@@ -1,10 +1,26 @@
-# Program #4: Coordinates
-# Write a distance function that will take two 3-dimensional coordinates (as input) 
-# and will return (as output) the distance between those points in space.  
-# The 3-dimensional coordinates must be stored as tuples.
+#Programmer: Alethea Lo
+#Date: 3/3/25
+#Title: Coordinates
 
-# Now write a mainline that has the user enter the two tuples.  
-# The mainline calls the distance function and stores the distance in a variable.  The mainline then displays the distance.  
-# Also include exception handling to deal with faulty input.
-# The distance between two points (x1,y1,z1) and (x2, y2, z2) is 
-#    given by:   sqrt ((x2-x1)^2 + (y2 - y1)^2 + (z1 - z2)^2) 
+import math
+
+def distance(point1, point2):
+    """Calculates and returns the distance between two 3D points."""
+    return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2 + (point2[2] - point1[2])**2)
+
+def get_coordinates(prompt):
+    """Gets a 3D coordinate from the user with input validation."""
+    while True:
+        try:
+            x, y, z = map(float, input(prompt).split())
+            return (x, y, z)
+        except ValueError:
+            print("Invalid input. Please enter three numerical values separated by spaces.")
+
+#Main Program
+print("Enter two 3D coordinates to calculate the distance between them.")
+point1 = get_coordinates("Enter first coordinate (x y z): ")
+point2 = get_coordinates("Enter second coordinate (x y z): ")
+
+dist = distance(point1, point2)
+print(f"The distance between {point1} and {point2} is: {dist:.2f}")
